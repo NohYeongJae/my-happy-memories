@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Dongle:wght@300;400;700&display=swap');
+
+body{
+  margin: 0;
+  background-color: #FAFAFA;
+  font-family: "Dongle", serif;
+}
+/*글씨체*/
+.dongle-bold {
+  font-family: "Dongle", serif;
+  font-weight: 700;
+  font-style: normal;
+}
+/*상단 네비게이션 바*/
+.navbar{
+  display: flex;    /*세로로 있던 박스들을 가로로 바꾼다*/
+  justify-content: space-between; /*박스들 사이에 빈 공간을 넣어준다.*/
+  align-items: center; /*네비바에 있는 박스들을 네비바 내에서 가운데 정렬해준다*/
+  background-color: #FAFAFA;
+  padding: 8px 10px; /*네비바 공백 위아래로 8px 양 옆으로 12px*/
+}
+.navbar_logo {
+  padding-left: 0;
+}
+.navbar_title{
+  font-size: 30px;
+  padding-right: 100px;
+}
+/*메인 페이지*/
+.main_page{
+
+  height: 500px;
+  margin: 50px;
+  text-align: center;
+  padding: 50px;
+}
+p{
+  line-height: 120%;
+}
+.greetings{
+  font-size: 400%;
+}
+.introduce{
+  font-size: 300%;
+}
+.footer_page{
+  background-color: #999999;
+  height: 800px;
+}
+
