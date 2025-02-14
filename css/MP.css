@@ -54,7 +54,7 @@ p {
 .gallery_page {
     padding: 100px;
     height: 600px;
-    width: 1652px;
+    line-height: 120%;
 
 }
 .gallery_text{
@@ -65,12 +65,44 @@ p {
 }
 .slide_container{
     width: 100%;
-    text-align: center;
+    justify-content: center;
+    display: flex;
+    overflow: hidden;
+    padding: 10px 0;
+
 }
 .slide_box{
-    display: inline-block;
-    margin: 10px;
+    width: 327.5px;
+    height: 450px;
+    flex-shrink: 0;
+}
+.slide_box img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+.main-tit{
+    display: flex;
+    flex-basis: 100%;
+    font-size: 300%;
+}
+.controls button{
+    padding: 10px 5px;
+}
+.main-tit::before{
+    content: "";
+    flex-grow: 1;
+    margin: 0px 16px;
+    background: black;
+    height: 1px;
+}
+.main-tit::after{
+    content: "";
+    flex-grow: 1;
+    margin: 0px 16px;
+    background: black;
+    height: 1px;
 
 }
-
 
