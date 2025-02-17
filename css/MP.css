@@ -55,6 +55,7 @@ p {
     padding: 100px;
     height: 600px;
     line-height: 120%;
+    text-align: center;
 
 }
 .gallery_text{
@@ -63,13 +64,13 @@ p {
     font-size: 50px;
     color: #c9ab81;
 }
-.slide_container{
-    width: 100%;
-    justify-content: center;
-    display: flex;
-    overflow: hidden;
-    padding: 10px 0;
-
+#galleryContainer {
+    display: flex; /* 가로로 정렬 */
+    flex-direction: row; /* 행 방향으로 배치 */
+    gap: 20px; /* 이미지 간격 */
+    overflow: hidden; /* 넘치는 이미지 숨김 */
+    white-space: nowrap; /* 줄바꿈 방지 */
+    justify-content: center; /* 가운데 정렬 */
 }
 .slide_box{
     width: 327.5px;
@@ -82,13 +83,43 @@ p {
     object-fit: cover;
     border-radius: 10px;
 }
+.slide_container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+    overflow: hidden;
+}
 .main-tit{
     display: flex;
     flex-basis: 100%;
     font-size: 300%;
 }
-.controls button{
-    padding: 10px 5px;
+.controls {
+    position: relative;
+    width: 100%;
+}
+.controls button {
+    position: absolute;
+    top: 137.5%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: 25px;
+    cursor: pointer;
+    border-radius: 50%;
+}
+.prevBtn {
+    left: 0;
+}
+.nextBtn {
+    right: 0;
+}
+.controls button img {
+    width: 100%;
+    height: auto;
+    max-width: 60px;
 }
 .main-tit::before{
     content: "";
