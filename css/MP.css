@@ -73,7 +73,7 @@ p {
     justify-content: center; /* 가운데 정렬 */
 }
 .slide_box{
-    width: 327.5px;
+    width: 327px;
     height: 450px;
     flex-shrink: 0;
 }
@@ -124,16 +124,60 @@ p {
 .main-tit::before{
     content: "";
     flex-grow: 1;
-    margin: 0px 16px;
+    margin: 0 16px;
     background: black;
     height: 1px;
 }
 .main-tit::after{
     content: "";
     flex-grow: 1;
-    margin: 0px 16px;
+    margin: 0 16px;
     background: black;
     height: 1px;
 
 }
 
+/* 모달 내부 컨텐츠 */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    justify-content: center;
+    align-items: center;
+}
+.modal-content {
+    position: relative;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    width: 50%;
+    max-width: 600px;
+}
+
+/* 모달 닫기 버튼 */
+.close {
+    position: absolute;
+    top: 0;
+    right: 15px;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+/* 모달 안의 이미지 */
+#modalImage {
+    width: 95%;
+    height: auto;
+    border-radius: 10px;
+}
+
+/* 모달 설명 */
+#modalDescription {
+    font-size: 25px;
+    margin-top: 10px;
+}

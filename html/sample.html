@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HMP</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dongle:wght@300;400;700&display=swap');
+
+        body {
+            margin: 0;
+            background-color: #FAFAFA;
+            font-family: "Dongle", serif;
+        }
+
+        /*글씨체*/
+        .dongle-bold {
+            font-family: "Dongle", serif;
+            font-weight: 700;
+            font-style: normal;
+        }
+
+        /*상단 네비게이션 바*/
+        .navbar {
+            display: flex; /*세로로 있던 박스들을 가로로 바꾼다*/
+            justify-content: space-between; /*박스들 사이에 빈 공간을 넣어준다.*/
+            align-items: center; /*네비바에 있는 박스들을 네비바 내에서 가운데 정렬해준다*/
+            background-color: #FAFAFA;
+            padding: 8px 10px; /*네비바 공백 위아래로 8px 양 옆으로 12px*/
+        }
+
+        .navbar_logo {
+            padding-left: 0;
+        }
+
+        .navbar_title {
+            font-size: 30px;
+            padding-right: 100px;
+        }
+
+        /*메인 페이지*/
+        .main_page {
+            height: 500px;
+            margin: 50px;
+            text-align: center;
+            padding: 50px;
+        }
+
+        p {
+            line-height: 120%;
+        }
+
+        .greetings {
+            font-size: 400%;
+        }
+
+        .introduce {
+            font-size: 300%;
+        }
+
+        .gallery_page {
+            padding: 100px;
+            height: 600px;
+            line-height: 120%;
+            text-align: center;
+
+        }
+        .gallery_text{
+            text-align: center;
+            display: block;
+            font-size: 50px;
+            color: #c9ab81;
+        }
+        #galleryContainer {
+            display: flex; /* 가로로 정렬 */
+            flex-direction: row; /* 행 방향으로 배치 */
+            gap: 20px; /* 이미지 간격 */
+            overflow: hidden; /* 넘치는 이미지 숨김 */
+            white-space: nowrap; /* 줄바꿈 방지 */
+            justify-content: center; /* 가운데 정렬 */
+        }
+        .slide_box{
+            width: 327.5px;
+            height: 450px;
+            flex-shrink: 0;
+        }
+        .slide_box img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+        .slide_container{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 50px;
+            overflow: hidden;
+        }
+        .main-tit{
+            display: flex;
+            flex-basis: 100%;
+            font-size: 300%;
+        }
+        .controls {
+            position: relative;
+            width: 100%;
+        }
+        .controls button {
+            position: absolute;
+            top: 137.5%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            padding: 0;
+            font-size: 25px;
+            cursor: pointer;
+            border-radius: 50%;
+        }
+        .prevBtn {
+            left: 0;
+        }
+        .nextBtn {
+            right: 0;
+        }
+        .controls button img {
+            width: 100%;
+            height: auto;
+            max-width: 60px;
+        }
+        .main-tit::before{
+            content: "";
+            flex-grow: 1;
+            margin: 0px 16px;
+            background: black;
+            height: 1px;
+        }
+        .main-tit::after{
+            content: "";
+            flex-grow: 1;
+            margin: 0px 16px;
+            background: black;
+            height: 1px;
+
+        }
+
+        /* 모달 내부 컨텐츠 */
+        .modal-content {
+            position: relative;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            width: 50%;
+            max-width: 600px;
+        }
+
+        /* 모달 닫기 버튼 */
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 30px;
+            cursor: pointer;
+        }
+
+        /* 모달 안의 이미지 */
+        #modalImage {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        /* 모달 설명 */
+        #modalDescription {
+            font-size: 18px;
+            margin-top: 10px;
+        }
+
+    </style>
+</head>
+<body>
+<!--상단 배너바-->
+<nav class="navbar">
+    <div class="navbar_logo">
+        <img src="../img/로고.png" height="90px" width="150px"/>
+    </div>
+    <div class="navbar_title">
+        <h1>Happy Memory Picture</h1>
+    </div>
+    <div class="navbar_menu">
+        <!--아이콘 출처 : Icons8.com-->
+        <a href="https://github.com/NohYeongJae" target="_blank"><img src="../img/icons8-github의-50.png" height="50"
+                                                                      width="50"/></a>
+    </div>
+</nav>
+<!--메인 페이지-->
+<div class="main_page" style="overflow: hidden">
+    <h1 class="greetings">환영합니다</h1>
+    <p class="introduce">저는 [ESTSOFT] 백엔드 개발자 양성과정 10기 수강생 노영재입니다!<br>
+        Happy Memory Picture은 저의 행복한 사진을 전시하는 공간입니다.</p>
+</div>
+</div>
+<!--갤러리 부분-->
+<section id="gallery">
+    <div class="gallery_page">
+        <span class="gallery_text">저의 소중한 추억들을 소개합니다.</span>
+        <h2 class="main-tit">My Happy Memory</h2>
+        <div class="slide_container">
+            <button id="prevBtn" onclick="prevImages()"><img src="../img/왼쪽2.png" height="24" width="24"/></button>
+            <div id="galleryContainer"></div>
+            <button id="nextBtn" onclick="nextImages()"><img src="../img/오른쪽2.png" height="24" width="24"/></button>
+        </div>
+    </div>
+</section>
+<!--모달 창-->
+<div id="imageModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <img id="modalImage" src="" alt="확대 이미지">
+        <p id="modalDescription"></p>
+    </div>
+</div>
+<script>
+    const images = [
+        "../img/봄.jpg", "../img/여름.jpg", "../img/가을.jpg", "../img/겨울.jpg",
+        "../img/비행기.jpg", "../img/제주도 바다.jpg", "../img/제주도 바다2.jpg", "../img/제주도 이호테우해변3.jpg",
+        "../img/제주도 이호테우해번.jpg", "../img/팝업스토어1.jpg", "../img/팝업스토어2.jpg", "../img/팝업스토어3.jpg",
+        "../img/크리스마스.jpg", "../img/해변.jpg", "../img/찰리 푸스.jpg", "../img/한강.jpg"
+    ]
+    let currentIndex = 0; /*현재 화면에 표시되는 첫 번째 이미지의 인덱스*/
+    const imagesPerPage = 4; /*한 번에 화면에 표시되는 이미지의 개수*/
+
+    /*HTML의 요소를 가져옴*/
+    const galleryContainer = document.getElementById("galleryContainer");
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+
+    const modal = document.getElementById("galleryContainer");
+    const modalImages = document.getElementById("modalImage");
+    const modalDescription = document.getElementById("modalDescription");
+    const closeModal =document.getElementById(".close");
+
+    function renderImages() {
+        galleryContainer.innerHTML = ""; /*기존 이미지 초기화*/
+
+        for (let i = currentIndex; i < currentIndex + imagesPerPage && i < images.length; i++) {
+            const imgBox = document.createElement("div");
+            imgBox.classList.add("slide_box");
+
+            const img = document.createElement("img");
+            img.src = images[i];
+
+            imgBox.appendChild(img);
+            galleryContainer.appendChild(imgBox);
+        }
+
+        prevBtn.disabled = currentIndex === 0;
+        nextBtn.disabled = currentIndex + imagesPerPage >= images.length;
+    }
+
+    function nextImages() {
+        if (currentIndex + 1 + imagesPerPage - 1 < images.length) {
+            currentIndex += 1;
+            renderImages();
+        }
+    }
+
+    function prevImages() {
+        if (currentIndex - 1 >= 0) {
+            currentIndex -= 1;
+            renderImages();
+        }
+    }
+
+    closeModal.addEventListener("click", function (){
+        modal.style.display="none";
+    });
+
+    window.addEventListener("click", function (){
+        if(event.target === modal){
+            modal.style.display="none";
+        }
+    });
+
+    renderImages();
+    prevBtn.addEventListener("click", prevImages);
+    prevBtn.addEventListener("click", nextImages);
+
+
+
+</script>
+</body>
+</html>

@@ -1,26 +1,62 @@
 const images = [
-    "../img/봄.jpg", "../img/여름.jpg", "../img/가을.jpg", "../img/겨울.jpg",
-    "../img/비행기.jpg", "../img/제주도 바다.jpg", "../img/제주도 바다2.jpg", "../img/제주도 이호테우해변3.jpg",
-    "../img/제주도 이호테우해번.jpg", "../img/팝업스토어1.jpg", "../img/팝업스토어2.jpg", "../img/팝업스토어3.jpg",
-    "../img/크리스마스.jpg", "../img/해변.jpg", "../img/찰리 푸스.jpg", "../img/한강.jpg"
-]
-let currentIndex = 0; /*현재 화면에 표시되는 첫 번째 이미지의 인덱스*/
-const imagesPerPage = 4; /*한 번에 화면에 표시되는 이미지의 개수*/
+    { src: "../img/봄.jpg", desc: "아름다운 봄의 풍경입니다." },
+    { src: "../img/여름.jpg", desc: "무더운 여름의 한 장면." },
+    { src: "../img/가을.jpg", desc: "가을 단풍이 물든 거리." },
+    { src: "../img/겨울.jpg", desc: "눈 덮인 겨울 풍경." },
+    { src: "../img/가을.jpg", desc: "가을 단풍이 물든 거리." },
+    { src: "../img/가을.jpg", desc: "가을 단풍이 물든 거리." },
+    { src: "../img/가을.jpg", desc: "가을 단풍이 물든 거리." },
+    { src: "../img/가을.jpg", desc: "가을 단풍이 물든 거리." },
+    { src: "../img/가을.jpg", desc: "가을 단풍이 물든 거리." },
+    { src: "../img/가을.jpg", desc: "가을 단풍이 물든 거리." },
+    { src: "../img/가을.jpg", desc: "가을 단풍이 물든 거리." },
+    { src: "../img/가을.jpg", desc: "가을 단풍이 물든 거리." },
+    { src: "../img/가을.jpg", desc: "가을 단풍이 물든 거리." },
+    { src: "../img/가을.jpg", desc: "가을 단풍이 물든 거리." },
+    { src: "../img/가을.jpg", desc: "가을 단풍이 물든 거리." },
+    { src: "../img/가을.jpg", desc: "가을 단풍이 물든 거리." },
+    { src: "../img/가을.jpg", desc: "가을 단풍이 물든 거리." },
+    { src: "../img/가을.jpg", desc: "가을 단풍이 물든 거리." },
+    { src: "../img/가을.jpg", desc: "가을 단풍이 물든 거리." },
+    { src: "../img/가을.jpg", desc: "가을 단풍이 물든 거리." },
 
-/*HTML의 요소를 가져옴*/
+];
+
+let currentIndex = 0;
+const imagesPerPage = 4;
+
 const galleryContainer = document.getElementById("galleryContainer");
 const prevBtn = document.getElementById("prevBtn");
 const nextBtn = document.getElementById("nextBtn");
 
+// 모달 관련 요소
+const modal = document.getElementById("imageModal");
+const modalImage = document.getElementById("modalImage");
+const modalDescription = document.getElementById("modalDescription");
+const closeModal = document.querySelector(".close");
+
+function openModal(imgSrc, description) {
+    modal.style.display = "flex"; // 모달 보이게 설정
+    modalImage.src = imgSrc; // 이미지 변경
+    modalDescription.textContent = description; // 설명 추가
+}
+
 function renderImages() {
-    galleryContainer.innerHTML = ""; /*기존 이미지 초기화*/
+    galleryContainer.innerHTML = "";
 
     for (let i = currentIndex; i < currentIndex + imagesPerPage && i < images.length; i++) {
         const imgBox = document.createElement("div");
         imgBox.classList.add("slide_box");
 
         const img = document.createElement("img");
-        img.src = images[i];
+        img.src = images[i].src;
+        img.setAttribute("data-desc", images[i].desc);
+
+        img.addEventListener("click", function () {
+            modal.style.display = "flex";
+            modalImage.src = this.src;
+            modalDescription.textContent = this.dataset.desc;
+        });
 
         imgBox.appendChild(img);
         galleryContainer.appendChild(imgBox);
@@ -30,19 +66,16 @@ function renderImages() {
     nextBtn.disabled = currentIndex + imagesPerPage >= images.length;
 }
 
-function nextImages() {
-    if (currentIndex + 1 + imagesPerPage - 1 < images.length) {
-        currentIndex += 1;
-        renderImages();
-    }
-}
+closeModal.addEventListener("click", function () {
+    modal.style.display = "none";
+});
 
-function prevImages() {
-    if (currentIndex - 1 >= 0) {
-        currentIndex -= 1;
-        renderImages();
+window.addEventListener("click", function (event) {
+    if (event.target === modal) {
+        modal.style.display = "none";
     }
-}
+});
 
 renderImages();
-
+prevBtn.addEventListener("click", function () { currentIndex--; renderImages(); });
+nextBtn.addEventListener("click", function () { currentIndex++; renderImages(); });
