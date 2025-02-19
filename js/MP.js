@@ -1,24 +1,20 @@
 const images = [
-    { src: "../img/봄.jpg", desc: "아름다운 봄의 풍경입니다." },
-    { src: "../img/여름.jpg", desc: "무더운 여름의 한 장면." },
-    { src: "../img/가을.jpg", desc: "가을 단풍이 물든 거리." },
-    { src: "../img/겨울.jpg", desc: "눈 덮인 겨울 풍경." },
-    { src: "../img/가을.jpg", desc: "가을 단풍이 물든 거리." },
-    { src: "../img/가을.jpg", desc: "가을 단풍이 물든 거리." },
-    { src: "../img/가을.jpg", desc: "가을 단풍이 물든 거리." },
-    { src: "../img/가을.jpg", desc: "가을 단풍이 물든 거리." },
-    { src: "../img/가을.jpg", desc: "가을 단풍이 물든 거리." },
-    { src: "../img/가을.jpg", desc: "가을 단풍이 물든 거리." },
-    { src: "../img/가을.jpg", desc: "가을 단풍이 물든 거리." },
-    { src: "../img/가을.jpg", desc: "가을 단풍이 물든 거리." },
-    { src: "../img/가을.jpg", desc: "가을 단풍이 물든 거리." },
-    { src: "../img/가을.jpg", desc: "가을 단풍이 물든 거리." },
-    { src: "../img/가을.jpg", desc: "가을 단풍이 물든 거리." },
-    { src: "../img/가을.jpg", desc: "가을 단풍이 물든 거리." },
-    { src: "../img/가을.jpg", desc: "가을 단풍이 물든 거리." },
-    { src: "../img/가을.jpg", desc: "가을 단풍이 물든 거리." },
-    { src: "../img/가을.jpg", desc: "가을 단풍이 물든 거리." },
-    { src: "../img/가을.jpg", desc: "가을 단풍이 물든 거리." },
+    {src: "../img/봄.jpg", desc: "서산 해미읍성에서 찍은 벚꽃"},
+    {src: "../img/여름.jpg", desc: "집 앞 거리 비가 오는 여름"},
+    {src: "../img/가을.jpg", desc: "산책 길 중 잘 익은 단풍"},
+    {src: "../img/겨울.jpg", desc: "학교에서 마지막 겨울."},
+    {src: "../img/비행기.jpg", desc: "대학교 동기들과 제주도 여행"},
+    {src: "../img/제주도 바다.jpg", desc: "제주도 노을과 해변"},
+    {src: "../img/제주도 바다2.jpg", desc: "제주도 등대"},
+    {src: "../img/제주도 이호테우해변3.jpg", desc: "이호테우해변 방파제"},
+    {src: "../img/제주도 이호테우해번.jpg", desc: "이호테우해변의 푸른 바다"},
+    {src: "../img/팝업스토어1.jpg", desc: "코카콜라 해변"},
+    {src: "../img/팝업스토어2.jpg", desc: "코카콜라 정글"},
+    {src: "../img/팝업스토어3.jpg", desc: "코카콜라 하늘"},
+    {src: "../img/크리스마스.jpg", desc: "크리스마스 속 트리와 산타"},
+    {src: "../img/해변.jpg", desc: "영종도 겨울 해변"},
+    {src: "../img/찰리 푸스.jpg", desc: "찰리 푸스 내한 공연"},
+    {src: "../img/한강.jpg", desc: "도심 속의 건물들"},
 
 ];
 
@@ -35,9 +31,10 @@ const modalImage = document.getElementById("modalImage");
 const modalDescription = document.getElementById("modalDescription");
 const closeModal = document.querySelector(".close");
 
-function openModal(imgSrc, description) {
+// 모달 생성
+function openModal(Src, description) {
     modal.style.display = "flex"; // 모달 보이게 설정
-    modalImage.src = imgSrc; // 이미지 변경
+    modalImage.src = Src; // 이미지 변경
     modalDescription.textContent = description; // 설명 추가
 }
 
@@ -51,7 +48,7 @@ function renderImages() {
         const img = document.createElement("img");
         img.src = images[i].src;
         img.setAttribute("data-desc", images[i].desc);
-
+        //이미지 슬라이드의 사진들 모달 생성
         img.addEventListener("click", function () {
             modal.style.display = "flex";
             modalImage.src = this.src;
@@ -77,5 +74,11 @@ window.addEventListener("click", function (event) {
 });
 
 renderImages();
-prevBtn.addEventListener("click", function () { currentIndex--; renderImages(); });
-nextBtn.addEventListener("click", function () { currentIndex++; renderImages(); });
+prevBtn.addEventListener("click", function () {
+    currentIndex--;
+    renderImages();
+});
+nextBtn.addEventListener("click", function () {
+    currentIndex++;
+    renderImages();
+});

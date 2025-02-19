@@ -172,12 +172,12 @@ p {
 /* 모달 안의 이미지 */
 #modalImage {
     width: 95%;
-    height: auto;
+    height: 600px;
     border-radius: 10px;
 }
 
 /* 모달 설명 */
 #modalDescription {
-    font-size: 25px;
-    margin-top: 10px;
+    font-size: 30px;
+    margin-top: 20px;
 }
