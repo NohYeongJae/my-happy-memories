@@ -32,7 +32,7 @@ const modalDescription = document.getElementById("modalDescription");
 const closeModal = document.querySelector(".close");
 
 // 모달 생성
-function openModal(Src, description) {
+function openmodal(Src, description) {
     modal.style.display = "flex"; // 모달 보이게 설정
     modalImage.src = Src; // 이미지 변경
     modalDescription.textContent = description; // 설명 추가
